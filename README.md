@@ -1,2 +1,2 @@
-# et
-Elektrotechnik Projekte
+# ET
+> Elektrotechnik Projekte
