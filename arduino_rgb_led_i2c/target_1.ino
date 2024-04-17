@@ -1,4 +1,3 @@
-// Potentiometer
 #include <Wire.h>
 
 // Potenziometer Pins
@@ -15,17 +14,21 @@ int b = 0;
 void setup() {
     Serial.begin(9600);
 
+    pinMode(pinR, INPUT);
+    pinMode(pinG, INPUT);
+    pinMode(pinB, INPUT);
+
     Wire.begin(0x01); // I2C als Target initialisieren
-    Wire.onRequest(rgbSenden());
+    Wire.onRequest(rgbSenden);
 }
 
 
 // Aktiv Potenziometer Werte auslesen, speichern (und ausgeben)
 void loop() {
     // `/ 4` um Wertebereich von 0-1023 auf 0-254 zu begrenzen
-    r = analogRead(pinR / 4);
-    g = analogRead(pinG / 4);
-    b = analogRead(pinB / 4);
+    r = analogRead(pinR) / 4;
+    g = analogRead(pinG) / 4;
+    b = analogRead(pinB) / 4;
 
     printRGB();
 }

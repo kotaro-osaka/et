@@ -1,4 +1,3 @@
-// RGB LED
 #include <Wire.h>
 
 // LED Pins
@@ -15,16 +14,18 @@ int b = 0;
 void setup() {
     Serial.begin(9600);
 
-    Wire.begin(0x02); // I2C als Target initialisieren
-    Wire.onReceive(updateRGB()); // LED mit gesendeten Werten aktualisieren
+    pinMode(pinR, OUTPUT);
+    pinMode(pinG, OUTPUT);
+    pinMode(pinB, OUTPUT);
 
-    Wire.onRequest(updateLED()); // LED manuell aktualisieren
+    Wire.begin(0x02); // I2C als Target initialisieren
+    Wire.onReceive(updateRGB); // LED mit gesendeten Werten aktualisieren
 }
 
 
-// void loop() {
-//     Passiv, reagiert nur auf Anfragen mit `Wire.onReceive` / `Wire.onRequest()`
-// }
+void loop() {
+    // Reagiert nur auf Anfragen mit `Wire.onReceive` / `Wire.onRequest()`
+}
 
 
 // Aktualisiert RGB Werte
@@ -48,9 +49,9 @@ void updateRGB() {
 
 // LED Farbe an aktuelle RGB Werte anpassen
 void updateLED() {
-    analogWrite(pinR, r);
-    analogWrite(pinG, g);
-    analogWrite(pinB, b);
+    digitalWrite(pinR, r);
+    digitalWrite(pinG, g);
+    digitalWrite(pinB, b);
 }
 
 

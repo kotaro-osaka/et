@@ -63,11 +63,3 @@ void printRGB() {
     Serial.println(g);
     Serial.println(b);
 }
-
-
-// LED manuell aktualisieren
-void updateLED() {
-    Wire.beginTransmission(TARGET_2);
-    Wire.write("update");
-    Wire.endTransmission(TARGET_2);
-}
