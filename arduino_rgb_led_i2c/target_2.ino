@@ -16,7 +16,7 @@ void setup() {
     Serial.begin(9600);
 
     Wire.begin(0x02); // I2C als Target initialisieren
-    Wire.onReceive(updateLED()); // LED mit gesendeten Werten aktualisieren
+    Wire.onReceive(updateRGB()); // LED mit gesendeten Werten aktualisieren
 
     Wire.onRequest(updateLED()); // LED manuell aktualisieren
 }
