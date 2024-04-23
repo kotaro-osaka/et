@@ -1,3 +1,4 @@
+// RGB LED
 #include <Wire.h>
 
 // LED Pins
@@ -14,12 +15,8 @@ int b = 0;
 void setup() {
     Serial.begin(9600);
 
-    pinMode(pinR, OUTPUT);
-    pinMode(pinG, OUTPUT);
-    pinMode(pinB, OUTPUT);
-
     Wire.begin(0x02); // I2C als Target initialisieren
-    Wire.onReceive(updateRGB); // LED mit gesendeten Werten aktualisieren
+    Wire.onReceive(updateLED()); // LED mit gesendeten Werten aktualisieren
 }
 
 
@@ -38,7 +35,7 @@ void updateRGB() {
         b = Wire.read();
         Serial.println("Werte erfolgreich ausgelesen");
 
-        // printRGB();
+        printRGB();
     } else {
         Serial.println("Error: Keine Daten von Master verfuegbar");
     }
@@ -49,9 +46,9 @@ void updateRGB() {
 
 // LED Farbe an aktuelle RGB Werte anpassen
 void updateLED() {
-    digitalWrite(pinR, r);
-    digitalWrite(pinG, g);
-    digitalWrite(pinB, b);
+    analogWrite(pinR, r);
+    analogWrite(pinG, g);
+    analogWrite(pinB, b);
 }
 
 

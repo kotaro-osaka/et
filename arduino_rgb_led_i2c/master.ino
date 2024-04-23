@@ -23,13 +23,13 @@ void loop() {
     writeT2();
 
     // Versucht LED alle 100ms zu aktualisieren
-    delay(100);
+    delay(3000);
 }
 
 
 void readT1() {
-    // RGB Werte anfordern; stopMsg=true
-    Wire.requestFrom(TARGET_1, 3, true);
+    // RGB Werte anfordern
+    Wire.requestFrom(TARGET_1, 3);
 
     // Sicherstellen, dass Bytes zum Abruf verfügbar sind
     if (Wire.available()) {
@@ -38,7 +38,7 @@ void readT1() {
         g = Wire.read();
         b = Wire.read();
 
-        printRGB();
+        // printRGB();
     } else {
         Serial.println("Error: Keine Daten von Target_1 verfuegbar");
     }
