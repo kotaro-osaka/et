@@ -30,7 +30,7 @@ void loop() {
     g = analogRead(pinG) / 4;
     b = analogRead(pinB) / 4;
 
-    printRGB();
+    // printRGB();
 }
 
 

@@ -38,7 +38,7 @@ void updateRGB() {
         b = Wire.read();
         Serial.println("Werte erfolgreich ausgelesen");
 
-        printRGB();
+        // printRGB();
     } else {
         Serial.println("Error: Keine Daten von Master verfuegbar");
     }
