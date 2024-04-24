@@ -16,7 +16,7 @@ void setup() {
     Serial.begin(9600);
 
     Wire.begin(0x02); // I2C als Target initialisieren
-    Wire.onReceive(updateLED()); // LED mit gesendeten Werten aktualisieren
+    Wire.onReceive(updateRGB); // LED mit gesendeten Werten aktualisieren
 }
 
 
@@ -28,7 +28,7 @@ void loop() {
 // Aktualisiert RGB Werte
 void updateRGB() {
     Serial.println("Update Anfrage von Master erhalten");
-    if (Wire.available()) {
+    if (Wire.available() >= 3) {
         // Werte auslesen (jeweils 1 byte)
         r = Wire.read();
         g = Wire.read();
@@ -41,7 +41,7 @@ void updateRGB() {
     }
 
     updateLED();
-}
+}   
 
 
 // LED Farbe an aktuelle RGB Werte anpassen
