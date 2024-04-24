@@ -15,6 +15,10 @@ int b = 0;
 void setup() {
     Serial.begin(9600);
 
+    pinMode(6, OUTPUT);
+    pinMode(3, OUTPUT);
+    pinMode(5, OUTPUT);
+
     Wire.begin(0x02); // I2C als Target initialisieren
     Wire.onReceive(updateRGB); // LED mit gesendeten Werten aktualisieren
 }
@@ -26,9 +30,9 @@ void loop() {
 
 
 // Aktualisiert RGB Werte
-void updateRGB() {
+void updateRGB(int numBytes) {
     Serial.println("Update Anfrage von Master erhalten");
-    if (Wire.available() >= 3) {
+    if (numBytes >= 3) {
         // Werte auslesen (jeweils 1 byte)
         r = Wire.read();
         g = Wire.read();
