@@ -1,2 +1,2 @@
 # ET
-> Elektrotechnik Projekte
+> Projekte aus dem ET-Unterricht
